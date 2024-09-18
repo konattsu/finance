@@ -27,3 +27,7 @@ jobs:
 
       - name: Run the executable file
         run: ./target/release/finance
+        env:
+          WEBHOOK_THREAD_REPLY: ${{ secrets.WEBHOOK_THREAD_REPLY }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          YAHOO_FINANCE_URL: ${{ secrets.YAHOO_FINANCE_URL }}
