@@ -21,8 +21,12 @@ pub struct YahooFinanceResp(
 impl YahooFinanceResp {
     pub fn fetch(endpoint_url: &str) -> Result<Self, YahooError> {
         println!("endpoint_url: `{}`", endpoint_url); // ! TODO 消す
-        if endpoint_url == "***" {
+        if endpoint_url.starts_with("**") {
             println!("予想通り")
+        } else {
+            for i in endpoint_url.chars() {
+                println!("{} <- url分解", i);
+            }
         }
 
         let client = reqwest::blocking::Client::new();
@@ -65,5 +69,21 @@ impl YahooFinanceResp {
 
     pub fn inner(&self) -> &Value {
         &self.0
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_for_yahoo_finance_resp_gives_invalid_url() {
+        let url = "invalid_url";
+        let res = YahooFinanceResp::fetch(url);
+        if let Err(e) = res {
+            println!("Result for gives invalid url: `{:?}`", e);
+        } else {
+            panic!("This function's return val must be Err");
+        }
     }
 }
