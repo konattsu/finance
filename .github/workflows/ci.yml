@@ -6,6 +6,10 @@ on:
     - cron: "0 1 * * *"
   workflow_dispatch:
 
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Dwarnings
+
 
 jobs:
   build:
@@ -15,16 +19,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Rust
-        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -- -y
+      - name: Setup Rust
+        uses: actions/setup-rust@v1
+        with:
+          rust-version: stable
 
-      - name: Set up Rust environment
-        run: source &HOME/.cargo/env
-
-      - name: Check Rust version
-        run: rustc --version
-
-      - name: Build project
+      - name: Build
         run: cargo build --release
 
       - name: Run the executable file
