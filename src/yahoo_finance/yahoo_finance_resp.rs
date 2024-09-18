@@ -20,22 +20,6 @@ pub struct YahooFinanceResp(
 
 impl YahooFinanceResp {
     pub fn fetch(endpoint_url: &str) -> Result<Self, YahooError> {
-        // いろいろためす start
-        println!("endpoint_url: `{}`", endpoint_url); // ! TODO 消す
-        if endpoint_url.starts_with("**") {
-            println!("予想通り")
-        } else {
-            for i in endpoint_url.chars() {
-                println!("{} <- url分解", i);
-            }
-        }
-
-        let tmp_url = format!("{} +++", endpoint_url);
-        println!("tmp_url: {}", tmp_url);
-        let endpoint_url = tmp_url.split_whitespace().next().unwrap();
-        println!("ごちゃごちゃした後の endpoint_url: `{endpoint_url}`");
-        // いろいろためす end
-
         let client = reqwest::blocking::Client::new();
         let response = client
             .get(endpoint_url)
