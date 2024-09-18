@@ -4,3 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+google_chat_webhook = { version="0.2.0", git = "https://github.com/konattsu/google_chat_webhook"}
+tokio = {version = "1.40.0", features = ["full"]}
+reqwest = {version = "0.12.7", features = ["rustls-tls", "blocking", "json"]}
+serde = {version = "1.0.210", features = ["derive"]}
+serde_json ={ version = "1.0.128"}
+dotenv = "0.15"
+thiserror = "1.0.0"
+chrono = {version = "0.4.38", features = ["serde"]}
+chrono-tz = {version = "0.10", features = ["serde"]}
+anyhow = "1.0.89"

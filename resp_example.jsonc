@@ -1,0 +1,80 @@
+{
+  "chart": {
+    "result": [
+      {
+        "meta": {
+          "currency": "JPY",  // 通貨の形式
+          "symbol": "^N225",
+          "exchangeName": "OSA",
+          "fullExchangeName": "Osaka",
+          "instrumentType": "INDEX",
+          "firstTradeDate": -157420800,
+          "regularMarketTime": 1726553702,  // `現在☆`の示す時刻, offsetが適用されている
+          "hasPrePostMarketData": false,
+          "gmtoffset": 32400,  // utc出すために使う
+          "timezone": "JST",
+          "exchangeTimezoneName": "Asia/Tokyo",
+          "regularMarketPrice": 36203.22,  // 現在☆
+          "fiftyTwoWeekHigh": 36663.18,
+          "fiftyTwoWeekLow": 35828.54,
+          "regularMarketDayHigh": 36663.18,  // 高値
+          "regularMarketDayLow": 35828.54,  // 安値
+          "regularMarketVolume": 0,
+          "longName": "Nikkei 225",  // 銘柄
+          "shortName": "Nikkei 225",
+          "chartPreviousClose": 36581.76, // 前日の終値
+          "priceHint": 2,
+          "currentTradingPeriod": {
+            "pre": {
+              "timezone": "JST",
+              "end": 1726531200,
+              "start": 1726531200,
+              "gmtoffset": 32400
+            },
+            "regular": {
+              "timezone": "JST",
+              "end": 1726552800,
+              "start": 1726531200,
+              "gmtoffset": 32400
+            },
+            "post": {
+              "timezone": "JST",
+              "end": 1726552800,
+              "start": 1726552800,
+              "gmtoffset": 32400
+            }
+          },
+          "dataGranularity": "1d",
+          "range": "1d",
+          "validRanges": [
+            "1d",
+            "5d",
+            "1mo",
+            "3mo",
+            "6mo",
+            "1y",
+            "2y",
+            "5y",
+            "10y",
+            "ytd",
+            "max"
+          ]
+        },
+        "timestamp": [1726553702],
+        "indicators": {
+          "quote": [
+            {
+              "close": [36203.21875],  // 終値
+              "volume": [0],
+              "low": [35828.5390625],
+              "high": [36663.1796875],
+              "open": [36601.9296875]  // 始値
+            }
+          ],
+          "adjclose": [{ "adjclose": [36203.21875] }]
+        }
+      }
+    ],
+    "error": null
+  }
+}
