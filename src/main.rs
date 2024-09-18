@@ -4,8 +4,6 @@ use finance::{YahooError, YahooFinanceInfo, YahooFinanceResp};
 use google_chat_webhook::Message;
 
 fn main() -> Result<(), anyhow::Error> {
-    env::set_var("RUST_BACKTRACE", "1");
-
     dotenv::dotenv().ok();
     let webhook_url = env::var("WEBHOOK_URL").expect("WEBHOOK_URL must be set");
     let thread_id =

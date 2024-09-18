@@ -20,6 +20,8 @@ pub struct YahooFinanceResp(
 
 impl YahooFinanceResp {
     pub fn fetch(endpoint_url: &str) -> Result<Self, YahooError> {
+        println!("endpoint_url: `{}`", endpoint_url); // ! TODO 消す
+
         let client = reqwest::blocking::Client::new();
         let response = client
             .get(endpoint_url)
