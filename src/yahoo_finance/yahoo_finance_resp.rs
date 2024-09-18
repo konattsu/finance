@@ -21,11 +21,15 @@ pub struct YahooFinanceResp(
 impl YahooFinanceResp {
     pub fn fetch(endpoint_url: &str) -> Result<Self, YahooError> {
         println!("endpoint_url: `{}`", endpoint_url); // ! TODO 消す
+        if endpoint_url == "***" {
+            println!("予想通り")
+        }
 
         let client = reqwest::blocking::Client::new();
         let response = client
             .get(endpoint_url)
-            .header(reqwest::header::USER_AGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+            // .header(reqwest::header::USER_AGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+            .header(reqwest::header::USER_AGENT, "Mozilla/5.0")
             .send()
             .map_err(|e| YahooError::NetworkError(e.to_string()))?;
 
