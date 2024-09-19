@@ -9,12 +9,18 @@ fn main() -> Result<(), anyhow::Error> {
     let thread_id =
         env::var("WEBHOOK_THREAD_REPLY").expect("WEBHOOK_THREAD_REPLY must be set");
 
-    let message_text = process_yahoo_finance()?;
+    let message_text = match process_yahoo_finance() {
+        Ok(val) => val,
+        Err(e) => format!("YahooFinanceError - {}", e),
+    };
 
-    google_chat_webhook::post_google_chat_webhook(
+    if let Err(e) = google_chat_webhook::post_google_chat_webhook(
         &webhook_url,
         Message::new(message_text, Some(thread_id.clone())),
-    )?;
+    ) {
+        eprintln!("GoogleChatWebhookError - {}", e);
+        return Err(e.into());
+    }
 
     Ok(())
 }
