@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-google_chat_webhook = { version="0.2.0", git = "https://github.com/konattsu/google_chat_webhook"}
+google_chat_webhook = { git = "https://github.com/konattsu/google_chat_webhook", features = ["blocking"]}
 tokio = {version = "1.40.0", features = ["full"]}
 reqwest = {version = "0.12.7", features = ["rustls-tls", "blocking", "json"]}
 serde = {version = "1.0.210", features = ["derive"]}

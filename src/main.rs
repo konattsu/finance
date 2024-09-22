@@ -1,7 +1,7 @@
 use std::env;
 
 use finance::{YahooError, YahooFinanceInfo, YahooFinanceResp};
-use google_chat_webhook::Message;
+use google_chat_webhook::{Message, Reply};
 
 fn main() -> Result<(), anyhow::Error> {
     dotenv::dotenv().ok();
@@ -14,9 +14,9 @@ fn main() -> Result<(), anyhow::Error> {
         Err(e) => format!("YahooFinanceError - {}", e),
     };
 
-    if let Err(e) = google_chat_webhook::post_google_chat_webhook(
+    if let Err(e) = google_chat_webhook::blocking::post_google_chat_webhook(
         &webhook_url,
-        Message::new(message_text, Some(thread_id.clone())),
+        Message::new(message_text, Some(Reply::new(thread_id, true))),
     ) {
         eprintln!("GoogleChatWebhookError - {}", e);
         return Err(e.into());
