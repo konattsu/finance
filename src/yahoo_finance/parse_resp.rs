@@ -98,10 +98,6 @@ impl YahooFinanceInfo {
         })
     }
 
-    pub fn inner(&self) -> &Self {
-        self
-    }
-
     /// 営業終了してから呼び出してほしい
     pub fn get_result_that_day_ja(&self) -> String {
         let today = self.present - self.previous_closed;
@@ -113,8 +109,7 @@ impl YahooFinanceInfo {
 現在価格: {}
 日次変動幅: {} - {}
 前営業の終値: {}
-今日: {}
-"#,
+今日: {}"#,
             self.name,
             self.currency,
             self.updated_date.with_timezone(&Tz::Asia__Tokyo),
@@ -134,14 +129,26 @@ impl YahooFinanceInfo {
 通貨: {}
 最終更新: {}
 現在価格: {}
-今日: {}
-"#,
+今日: {}"#,
             self.name,
             self.currency,
             self.updated_date.with_timezone(&Tz::Asia__Tokyo),
             self.present,
             Self::to_string_gives_sign(today)
         )
+    }
+
+    /// 更新日が現在時刻と同じかどうか, Asia__Tokyoで確認
+    pub fn updated_today_in_ja(&self) -> bool {
+        const JA_TZ: Tz = Tz::Asia__Tokyo;
+        let updated = self.updated_date.with_timezone(&JA_TZ);
+        let today = Utc::now().with_timezone(&JA_TZ);
+        const Y_M_D: &str = "%Y%d%m";
+        updated.format(Y_M_D).to_string() == today.format(Y_M_D).to_string()
+    }
+
+    pub fn get_name(&self) -> String {
+        self.name.to_owned()
     }
 
     fn to_string_gives_sign(f: f64) -> String {

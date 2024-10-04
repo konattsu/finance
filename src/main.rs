@@ -31,5 +31,10 @@ fn process_yahoo_finance() -> Result<String, YahooError> {
 
     let resp = YahooFinanceResp::fetch(&yahoo_finance_url)?;
     let info = YahooFinanceInfo::new(&resp)?;
-    Ok(info.get_result_that_day_ja())
+
+    if info.updated_today_in_ja() {
+        Ok(info.get_result_that_day_ja())
+    } else {
+        Ok(format!("{}\n本日はお休み", info.get_name()))
+    }
 }
